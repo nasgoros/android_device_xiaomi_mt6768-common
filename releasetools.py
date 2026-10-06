@@ -5,7 +5,21 @@
 #
 
 import common
+import os
 import re
+import sys
+
+def FullOTA_InstallBegin(info):
+  # nasgorOS: maintainer, security patch and build details in the installer.
+  # This file runs from META/ of the target files, so locate vendor/nasgoros
+  # from the source tree root.
+  for top in (os.environ.get("ANDROID_BUILD_TOP", ""), os.getcwd()):
+    tools = os.path.join(top, "vendor", "nasgoros", "build", "tools")
+    if top and os.path.isfile(os.path.join(tools, "nasgoros_banner.py")):
+      sys.path.insert(0, tools)
+      import nasgoros_banner
+      nasgoros_banner.print_banner(info)
+      return
 
 def FullOTA_InstallEnd(info):
   OTA_InstallEnd(info)
