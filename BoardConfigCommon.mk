@@ -71,6 +71,10 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/mt6768
 TARGET_KERNEL_CONFIG := vendor/mt6768_defconfig
 # nasgorOS: KernelSU-Next (legacy), see kernel KernelSU-Next/NASGOROS.md
 TARGET_KERNEL_CONFIG += vendor/kernelsu.config
+# nasgorOS: kernel name 4.19.x-Zix-Kernel-bywahyu6070. An empty LOCALVERSION on
+# the make command line stops setlocalversion from appending "+" for git trees.
+TARGET_KERNEL_CONFIG += vendor/zix.config
+TARGET_KERNEL_ADDITIONAL_FLAGS += LOCALVERSION=
 TARGET_KERNEL_CLANG_VERSION := r416183b
 TARGET_KERNEL_CLANG_PATH := $(abspath .)/prebuilts/clang/kernel/$(HOST_PREBUILT_TAG)/clang-$(TARGET_KERNEL_CLANG_VERSION)
 BOARD_KERNEL_SEPARATED_DTBO := true
